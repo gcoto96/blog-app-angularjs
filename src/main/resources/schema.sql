@@ -16,8 +16,8 @@ CREATE TABLE posts (
   content     LONGTEXT,
   author VARCHAR(50),
   image bytea,
-  created_at  DATETIME ,
-  updated_at DATETIME,
+  created_at  DATETIME DEFAULT CURRENT_DATE,
+  updated_at DATETIME DEFAULT CURRENT_DATE,
   PRIMARY KEY (id)
 );
 
@@ -81,16 +81,5 @@ CREATE TABLE user (
 /* Table: products */
 CREATE TABLE accounts (
   id              INT NOT NULL,
-  product_code    VARCHAR(25) ,
-  product_name    VARCHAR(50) ,
-  description     VARCHAR(250),
-  standard_cost   DECIMAL(19,4) NULL DEFAULT '0.0000',
-  list_price      DECIMAL(19,4) NOT NULL DEFAULT '0.0000',
-  target_level    INT ,
-  reorder_level   INT ,
-  minimum_reorder_quantity INT ,
-  quantity_per_unit VARCHAR(50) ,
-  discontinued    TINYINT NOT NULL DEFAULT '0',
-  category        VARCHAR(50),
   PRIMARY KEY (id)
 );

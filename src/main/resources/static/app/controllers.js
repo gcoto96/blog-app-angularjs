@@ -14,15 +14,13 @@ angular.module('myApp.controllers', [])
                     $scope.post = {};
                     new Posts({
                         title: post.title,
-                        author:  $scope.userName,
+                        author: $scope.userName,
                         content: post.content[0],
                         image: post.image
                     }).$save(function (post) {
-
-
-                            $scope.posts.push(post);
-                            $scope.newPost = "";
-                            $location.path('/posts');
+                        $scope.posts.push(post);
+                        $scope.newPost = "";
+                        $location.path('/posts');
 
 
                     });
@@ -31,7 +29,6 @@ angular.module('myApp.controllers', [])
 
             }])
     .controller('PostViewController', function ($rootScope, $scope, Posts, $routeParams) {
-
         Posts.get({
             id: $routeParams.id
         }, function (post) {

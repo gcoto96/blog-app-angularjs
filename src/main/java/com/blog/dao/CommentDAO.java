@@ -24,7 +24,6 @@ public class CommentDAO {
     public CommentRest saveComment(CommentRest comment){
         Post post = new Post();
         post.setId(comment.getPostId());
-
         Comment commentModel = new Comment();
         commentModel.setPost(post);
         commentModel.setAuthor(comment.getAuthor());

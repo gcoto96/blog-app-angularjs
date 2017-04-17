@@ -14,11 +14,4 @@ import java.util.List;
 public interface AccountRepo extends JpaRepository<Account, Integer> {
     public List<Account> findAll();
     public Page<Account> findAll(Pageable p);
- //   Optional<Account> findOneById(Integer id);
-
-    //Product save(Product p);
-    //void delete(Product p) ;
-    //void delete(Integer id);
-    //Product deleteById(Integer id);
-    //boolean exists( Integer id);
 }

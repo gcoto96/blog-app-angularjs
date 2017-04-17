@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Created by nasheikh on 4/16/17.
+ * Class Name: PostRest
+ * Description: REST to DAO mapper
  */
 public class PostRest {
 
@@ -19,8 +21,16 @@ public class PostRest {
     @NotNull(message = "author is required")
     private String author;
 
-
     private String image;
+
+    public PostRest(Integer id, String title, String content, String author, String image) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.author = author;
+        this.image = image;
+    }
+    public PostRest(){};
 
     public Integer getId() {
         return id;

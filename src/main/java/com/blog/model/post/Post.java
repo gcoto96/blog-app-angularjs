@@ -8,6 +8,7 @@ import com.blog.model.comment.Comment;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +34,17 @@ public class Post implements Serializable {
 
     @Column
     private String image;
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at() {
+        this.created_at = new Date();
+    }
+
+    @Column
+    private Date created_at;
 
 //
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER ,cascade = CascadeType.ALL)

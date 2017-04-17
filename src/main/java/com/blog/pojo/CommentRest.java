@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Created by nasheikh on 4/16/17.
+ * Class Name: CommentRest
+ * Description : REST to DAO mapper
  */
 public class CommentRest {
 
@@ -15,6 +17,14 @@ public class CommentRest {
 
     @NotNull(message = "author is required")
     private String author;
+
+    public CommentRest(String content, String author, int postId) {
+        this.content = content;
+        this.author = author;
+        this.postId = postId;
+    }
+
+    public CommentRest(){};
 
     @NotNull(message = "postId is required")
     private int postId;

@@ -1,7 +1,6 @@
 package com.blog.api.account;
 
 import com.blog.model.account.Account;
-import com.blog.model.account.AccountResponse;
 //import AccountRepo;
 import com.blog.repository.account.AccountRepo;
 import io.swagger.annotations.Api;
@@ -14,16 +13,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.*;
+
+import java.security.Principal;
 import java.util.List;
 
 /**
- * Created by nasheikh on 4/8/17.
+ * Created by nasheikh on 4/9/17.
+ * Class Name: AccountController
+ * Description: REST controller for all accounts related workflow
  */
 @RestController
 @RequestMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(tags = {"Accounts"})
 public class AccountController {
 
+ /*
+   Method Name: healthCheck
+   Description : This method is to check app health
+   Input Param : NA
+   Output Type: HTTP.OK
+ */
     @RequestMapping("/healthcheck")
     public String healthCheck() {
         return "Blog App is Up!";
@@ -31,39 +40,35 @@ public class AccountController {
 
     @Autowired private JdbcTemplate jdbcTemplate;
     @Autowired private AccountRepo accountRepo;
-    @ApiOperation(value = "List of products", response = AccountResponse.class)
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Account> getProductsByPage(
-            @ApiParam(value = ""    )               @RequestParam(value = "page"  ,  defaultValue="0"   ,  required = false) Integer page,
-            @ApiParam(value = "between 1 to 1000" ) @RequestParam(value = "size"  ,  defaultValue="20"  ,  required = false) Integer size,
-            @RequestParam(value = "productid"  , required = false) Integer accountId,
-            @RequestParam(value = "category"   , required = false) String  category
-    ) {
-        AccountResponse resp = new AccountResponse();
-        Account qry = new Account();
-        if (accountId != null)  { qry.setId(accountId); }
-         return accountRepo.findAll();
 
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public Account addAccount(@RequestBody Account item) {
-        item.setId(null);
-        return accountRepo.saveAndFlush(item);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Account updateAccount(@RequestBody Account updatedAccount, @PathVariable Integer id) {
-        updatedAccount.setId(id);
-        return accountRepo.saveAndFlush(updatedAccount);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteAccount(@PathVariable Integer id) {
-        accountRepo.delete(id);
-    }
-
-
+//TODO multi user accounts feature (current code only has single user session)
+//
+//    @ApiOperation(value = "List of accounts", response = AccountResponse.class)
+//    @RequestMapping(method = RequestMethod.GET)
+//    public List<Account> getAllAccounts(
+//    ) {
+//        AccountResponse resp = new AccountResponse();
+//        Account qry = new Account();
+//         return accountRepo.findAll();
+//
+//    }
+//
+//    @RequestMapping(method = RequestMethod.POST)
+//    public Account addAccount(@RequestBody Account item) {
+//        item.setId(null);
+//        return accountRepo.saveAndFlush(item);
+//    }
+//
+//    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+//    public Account updateAccount(@RequestBody Account updatedAccount, @PathVariable Integer id) {
+//        updatedAccount.setId(id);
+//        return accountRepo.saveAndFlush(updatedAccount);
+//    }
+//
+//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+//    public void deleteAccount(@PathVariable Integer id) {
+//        accountRepo.delete(id);
+//    }
 
 
 }
