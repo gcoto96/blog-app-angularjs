@@ -45,14 +45,13 @@ Ensure you have this installed before proceeding further
 Sample blog app using Angularjs + Spring Boot
 
 * Features Status
-  a. Ability to register to the blogging portal and create a
-  personal blogging space  - WIP
-  b. Ability to publish multiple blog posts to the blogging space - Implemented
-   i. Blog content should contain a title and a description - Implemented
-  c. Ability to anonymously view other blog posts - Implemented
-  d. Ability to login and comment on other’s blog posts - Implemented
+ - Ability to register to the blogging portal and create a personal blogging space  - WIP
+ - Ability to publish multiple blog posts to the blogging space - Implemented
+   * Blog content should contain a title and a description - Implemented
+ - Ability to anonymously view other blog posts - Implemented
+ - Ability to login and comment on other’s blog posts - Implemented
 
-  Note: One single user is available user:users and password:password now and once it logs in it can perform b and d tasks above.
+Note: One single user is available user:users and password:password now and once it logs in it can perform b and d tasks above.
         If not logged in then c task holds good.
 
 ### REST Endpoints
