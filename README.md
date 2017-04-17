@@ -85,7 +85,7 @@ note:1.5 T to speed up the install
 
 
 ### Accessing Application
-Cpmponent         | URL                                      | Credentials
+Component         | URL                                      | Credentials
 ---               | ---                                      | ---
 Frontend          |  http://localhost:9119                   | `user/password`
 H2 Database       |  http://localhost:9119/h2-console        |  Driver:`org.h2.Driver` <br/> JDBC URL:`jdbc:h2:mem:demo` <br/> User Name:`sa`
@@ -107,7 +107,7 @@ Note: One single user is available user:users and password:password now and once
       If not logged in then c task holds good.
 
 
-##TODO features
+### TODO features
 1.User Registration - Currently single user session 
 2.Edit Post
 3.Search Post
@@ -116,7 +116,7 @@ Note: One single user is available user:users and password:password now and once
 6.Gulpify the project for minification
 7.Front End test cases
 
-##### References
+### References
 https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/index.html - Web template
 http://blog.angular-university.io/developing-a-modern-java-8-web-app-with-spring-mvc-and-angularjs/
 https://github.com/jhades/spring-mvc-angularjs-sample-app
