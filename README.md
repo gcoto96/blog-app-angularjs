@@ -49,6 +49,7 @@ Sample blog app using Angularjs + Spring Boot
   * How to build all in one app that includes (database, sample data, RESTfull API, Auto generated API Docs, frontend and security)
 
 
+
 ### Install Frontend
 ```bash
 # Navigate to root folder
@@ -81,6 +82,20 @@ Cpmponent         | URL                                      | Credentials
 ---               | ---                                      | ---
 Frontend          |  http://localhost:9119                   | `user/password`
 H2 Database       |  http://localhost:9119/h2-console        |  Driver:`org.h2.Driver` <br/> JDBC URL:`jdbc:h2:mem:demo` <br/> User Name:`sa`
+
+
+
+##Features Status
+a. Ability to register to the blogging portal and create a
+personal blogging space  - WIP
+b. Ability to publish multiple blog posts to the blogging space - Implemented
+ i. Blog content should contain a title and a description - Implemented
+c. Ability to anonymously view other blog posts - Implemented
+d. Ability to login and comment on other’s blog posts - Implemented
+
+Note: One single user is available user:users and password:password now and once it logs in it can perform b and d tasks above.
+      If not logged in then c task holds good.
+
 
 ##TODO features
 1.User Registration - Currently single user session 
