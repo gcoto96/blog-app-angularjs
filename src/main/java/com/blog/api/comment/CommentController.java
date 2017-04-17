@@ -2,13 +2,16 @@ package com.blog.api.comment;
 
 import com.blog.model.comment.Comment;
 import com.blog.model.post.Post;
+import com.blog.pojo.CommentRest;
+import com.blog.pojo.PostRest;
+import com.blog.dao.CommentDAO;
 import com.blog.repository.comment.CommentRepo;
-import com.blog.repository.post.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -20,24 +23,26 @@ public class CommentController {
     @Autowired private JdbcTemplate jdbcTemplate;
     @Autowired
     private CommentRepo repo;
+    @Autowired
+    private CommentDAO commentDAO;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Comment> findComment() {
-        return repo.findAll();
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public List<CommentRest> findComment() {
+//      //  return repo.findAll();
+//    }
 
-    @RequestMapping(value = "/{commentId}", method=RequestMethod.GET)
-    public Comment getComment(@PathVariable Integer commentId){
-      //  Post qry = new Post();
-        //if (postId != null)
-        return repo.findOne(commentId);
-
-    }
+//    @RequestMapping(value = "/{commentId}", method=RequestMethod.GET)
+//    public CommentRest getComment(@PathVariable Integer commentId){
+//      //  Post qry = new Post();
+//        //if (postId != null)
+//      //  return repo.findOne(commentId);
+//
+//    }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Comment addComment(@RequestBody Comment comment) {
-       return this.repo.save(comment);
-
+    public CommentRest addComment(@Valid @RequestBody CommentRest comment) {
+        CommentRest res = commentDAO.saveComment(comment);
+        return res;
     }
 
 //    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

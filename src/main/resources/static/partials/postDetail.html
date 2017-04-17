@@ -1,32 +1,53 @@
-<div style="margin-top: 10%;" ng-controller="PostViewController">
-    <h2>{{post.title}}</h2>
-    <!--<img src="{{post.image}}" ng-show="{{post.image}}"/>-->
-    <h2>by {{post.author}} </h2>
-    <div class="post-body">
-        <p>
-         {{post.content}}
-        </p>
-    </div>
-
-    <div class="comments" ng-controller="CommentController as commentCtrl">
-        <button class="fa fa-heart" ng-click="post.likes = post.likes+1"> {{post.likes}}</button>
-        <h3>Comments</h3>
-        <ul>
-            <li ng-repeat="comment in post.comments">
-                "{{comment.content}}"
-                <cite>- <b>{{comment.author}}</b></cite>
-            </li>
-        </ul>
-        <form name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(post)" novalidate>
-
-
-            <h4>Add Comment</h4>
-            <textarea ng-model="commentCtrl.comment.body" cols="30" rows="10" required></textarea>
-            <label for="">by:</label>
-            <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
-
-            <input type="submit" value="Submit" />
-        </form>
-    </div>
+<div class="post-content">
+    <h2>
+        <a href="#">{{post.title}}</a>
+    </h2>
+    <p class="lead">
+        by <a href="index.php">{{post.author}}</a>
+    </p>
+    <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+    <hr>
+    <div ng-show="containsImage"><img class="img-responsive" src="http://placehold.it/900x300" alt=""></div>
+    <p>{{post.content}}</p>
 </div>
+
+<hr>
+
+<div class="titleBox">
+    <h4>Comments</h4>
+</div>
+<ul class="commentList">
+    <li ng-repeat="comment in post.comments">
+        <div class="commenterImage">
+            <i class="fa fa-user fa-2x" aria-hidden="true"><span class="author-name">{{comment.author}}</span></i><span class="date sub-text">March 5th, 2014</span>
+        </div>
+        <div class="commentText">
+            <p class="">{{comment.content}}</p>
+        </div>
+    </li>
+</ul>
+<hr>
+
+<div class="comment-block">
+<form name="commentForm" ng-controller="CommentControllers" ng-submit="addComment()">
+    <fieldset class="form-group">
+        <textarea name="comment" ng-model="txtcomment" class="form-control" placeholder="Write a short comment..."
+                  title="Review" required></textarea>
+    </fieldset>
+    <fieldset class="form-group">
+        <input name="author" ng-model="author" type="email" class="form-control" placeholder="test@example.org" title="Email" required/>
+    </fieldset>
+
+    <div ng-show="!authenticated">
+    <span><a class="pull-left" href="#/login">Login To Add Comment</a></span>
+    <fieldset class="form-group">
+        <input type="submit" class="btn btn-primary pull-right disabled" value="Submit Comment"/>
+    </fieldset>
+    </div>
+    <div ng-show="authenticated">
+        <fieldset class="form-group">
+            <input type="submit" class="btn btn-primary pull-right" value="Submit Comment"/>
+        </fieldset>
+    </div>
+</form>
 </div>

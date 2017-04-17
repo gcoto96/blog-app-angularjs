@@ -1,25 +1,29 @@
-<h1>Greeting</h1>
 <div ng-show="authenticated">
-    <div class="post">
-        <h2>Add New Post</h2>
 
-        <form class="form-horizontal" role="form" ng-submit="addPost(post)">
-            <h4>Title</h4>
-            <input type="text" ng-model="post.title"/>
-            <h4>Body</h4>
-            <textarea ng-model="post.content" ng-list="/\n/" rows="10"></textarea>
-            <label for="">Featured Image URL</label>
-            <input type="text" ng-model="post.image" placeholder="http://placekitten.com/g/2000/600" />
-            <label for="">by:</label>
-            <input type="text" ng-model="post.author" placeholder="Author Name" required/>
+    <div class="add-post">
+        <h2>
+            <a href="#">Add New Post</a>
+        </h2>
+        <form class="form-post" role="form" ng-submit="addPost(post)">
+            <h4 href="#">Title</h4>
+            <input name="title" type="text" ng-model="post.title"/>
+            <h4 href="#">Body</h4>
+            <textarea name="content" ng-model="post.content" ng-list="/\n/" rows="10"></textarea>
 
-            <input type="submit" value="Submit" />
-            </select></form>
+            <div class="bottom-section">
+                </br>
+                <fieldset class="form-group">
+                    <input type="submit" class="btn btn-primary pull-right" value="Submit Post"/>
+                </fieldset>
+            </div>
+
+        </form>
     </div>
 
 </div>
-</div>
-</div>
-<div  ng-show="!authenticated">
-    <p><a href="#/login">Login to add post</a></p>
+
+<div ng-show="!authenticated">
+
+    <div ng-include src="'/partials/login.html'"></div>
+
 </div>

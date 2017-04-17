@@ -9,9 +9,12 @@ bin/
 *workspace
 .DS_Store
 .idea/
+blog-app.iml
 
 # WebUI dependencies
 bower_components/
+node_modules/
+public
 .bowerrc
 src/resources/static/bower_components
 

@@ -4,44 +4,45 @@
 
 angular.module('myApp.controllers', [])
     .controller('PostController',
-        ['$scope', 'Posts','$location','$state',
-            function ($scope, Posts, $location ,$state) {
+        ['$scope', 'Posts', '$location', '$state',
+            function ($scope, Posts, $location, $state) {
+                $scope.errors = {};
                 $scope.posts = {};
-                $scope.posts = Posts.query({
-                });
+                $scope.posts = Posts.query({});
 
                 $scope.addPost = function (post) {
                     $scope.post = {};
                     new Posts({
-                        title:post.title,
-                        author:post.author,
-                        content:post.content[0],
-                        image:post.image
+                        title: post.title,
+                        author:  $scope.userName,
+                        content: post.content[0],
+                        image: post.image
                     }).$save(function (post) {
-                        $scope.posts.push(post);
-                        $scope.newPost = "";
-                        $location.path('/posts');
+
+
+                            $scope.posts.push(post);
+                            $scope.newPost = "";
+                            $location.path('/posts');
+
+
                     });
 
                 };
 
-                // $scope.openPost = function (postId) {
-                //     Posts.queryForPostId({
-                //         id: postId
-                //     }, function (post) {
-                //         $scope.post = post;
-                //        // $location.path('/post/' + postId);
-                //     });
-                // };
-
             }])
-    .controller('PostViewController', function($scope, Posts, $routeParams) {
-        console.log('Hello');
-         Posts.get({
+    .controller('PostViewController', function ($rootScope, $scope, Posts, $routeParams) {
+
+        Posts.get({
             id: $routeParams.id
-        },function(post) {
-                    $scope.post = post;
-          });
+        }, function (post) {
+
+            if (post.image) {
+                $rootScope.containsImage = true;
+            } else {
+                $rootScope.containsImage = false;
+            }
+            $scope.post = post;
+        });
     })
     .controller('NavigationController',
         ['$rootScope', '$http', '$location', '$route',
@@ -65,6 +66,7 @@ angular.module('myApp.controllers', [])
                     }).then(function (response) {
                         if (response.data.name) {
                             $rootScope.authenticated = true;
+                            $rootScope.userName = response.data.name;
                         } else {
                             $rootScope.authenticated = false;
                         }
@@ -83,7 +85,7 @@ angular.module('myApp.controllers', [])
                     authenticate(self.credentials, function (authenticated) {
                         if (authenticated) {
                             console.log("Login succeeded")
-                            $location.path("/home");
+                            $location.path("/index");
                             self.error = false;
                             $rootScope.authenticated = true;
                         } else {
@@ -111,27 +113,22 @@ angular.module('myApp.controllers', [])
                 $http.get('/resource/').then(function (response) {
                     self.greeting = response.data;
                 });
-            }]).
-controller('CommentController', function($scope, Comments, $routeParams){
-    console.log('Commment');
-    $scope.comments = {};
-    $scope.comment = {};
+            }])
+    .controller('CommentControllers', function ($scope, Comments, $location) {
+        $scope.comments = [];
+        $scope.addComment = function () {
+            console.log($scope.txtcomment);
+            if ($scope.txtcomment != '') {
+                new Comments({
+                    content: $scope.txtcomment,
+                    author: $scope.author,
+                    postId: $scope.post.id
+                }).$save(function (comment) {
+                    $scope.post.comments.push(comment);
+                });
+            }
 
-    $scope.addComment = function (comment) {
-        new Comments({
-            comment:comment.content,
-            author:comment.author,
-            postid:comment.postid
-        }).$save(function (comment) {
-            $scope.comments.push(comment);
-            $scope.comment = "";
-           // $location.path('/posts');
-        });
+        }
 
-    };
-
-
-
-
-});;
+    });
 

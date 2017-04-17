@@ -1,51 +1,22 @@
 <div class="container">
-    <!--<div class="posts-search">-->
-        <!--<div class="row">-->
-            <!--<div class="col-xs-12">-->
-                <!--<div>-->
-                    <!--<form class="form-inline" role="form">-->
-                        <!--<span class="btn-group" >-->
-                            <!--<button ng-repeat="item in exampleLocations" ng-click="setLocation(item)" type="submit" class="btn btn-default">{{item}}</button>-->
-                        <!--</span>-->
-                        <!--<span class="form-group {{hasState}}">-->
-                            <!--<label class="sr-only" for="location">City</label>-->
-                            <!--<input ng-model="location" type="text" class="form-control" id="location" placeholder="City">-->
-                        <!--</span>-->
-                        <!--<button ng-click="getpostsByLocation(location)" type="submit" class="btn btn-primary">Search!</button>-->
-                        <!--<span ng-show="message" class="alert"><span class="glyphicon glyphicon-arrow-left">&nbsp;</span>{{message}}</span>-->
-                    <!--</form>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
 
     <div class="posts-data" ng-show="true">
-        <!--<div class="row">-->
-            <!--<div class="col-xs-12">-->
-                <!--<div posts-panel="posts" show-entry="posts[0]"></div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <div class="row">
-            <div class="col-xs-4" ng-repeat="post in posts" >
-                <div class="post-grid panel panel-primary">
-                    <div class="panel-heading"><a ng-href="#/post/{{post.id}}">{{post.title}}</a></div>
-                    <div class="panel-body">
-                        <div>
-                            <p class="lead">
-                                {{post.content | limitTo:70}}...
-                            </p>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <small>
-                            author: {{post.author}}&nbsp;
-                            likes: {{post.countLikes}}&nbsp;
-                            comments: {{post.countComments}}&nbsp;
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+        <div class="row" ng-repeat="post in posts">
+        <div class="post-grid">
+            <h2>
+                <a href="#">{{post.title}}</a>
+            </h2>
+            <p class="lead">
+                by <a href="index.php">{{post.author}}</a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+
+            <p>{{post.content | limitTo:150}}...</p>
+            <p><span class="glyphicon glyphicon-comment"></span>&nbsp;{{ post.comments.length}}</p>
+            <a class="btn btn-primary" href="#/post/{{post.id}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <hr>
+        </div>
+         </div>
     </div>
 </div>
