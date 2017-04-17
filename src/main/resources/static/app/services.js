@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('myApp.services', ['ngResource']).factory('Posts', function($resource) {
+    //Resource Factory for Posts
     return $resource('/posts/:id', { id: '@_id' }, {
         update: {
             method: 'PUT'
@@ -10,6 +11,7 @@ angular.module('myApp.services', ['ngResource']).factory('Posts', function($reso
         }
     });
 }).factory('Comments', function($resource) {
+    //Resource Factory for Comments
     return $resource('/comments/:id', { id: '@_id' }, {
         update: {
             method: 'PUT'

@@ -7,11 +7,10 @@ Component         | Technology
 Frontend          | [Angularjs]
 Backend (REST)    | [SpringBoot](Java)
 Security          | Basic Auth(Spring Security Basic Auth)
-REST Documentation| [Swagger UI / Springfox](https://github.com/springfox/springfox) and [ReDoc](https://github.com/Rebilly/ReDoc)
 In Memory DB      | H2 
 Persistence       | JPA (Using Spring Data)
-Client Build Tools| [angular-cli](https://github.com/angular/angular-cli), Webpack, npm
-Server Build Tools| Maven(Java) or Gradle
+Client Build Tools| Bower ,gulp
+Server Build Tools| Maven(Java)
 
 ## Folder Structure
 ```bash
@@ -48,6 +47,14 @@ Sample blog app using Angularjs + Spring Boot
 * Build
   * How to build all in one app that includes (database, sample data, RESTfull API, Auto generated API Docs, frontend and security)
 
+### REST Endpoints
+
+Header Info : Basic Auth
+- /user GET - Login
+- /posts POST - Add new post when logged in
+- /posts/id GET - Get a post
+- /posts GET - Get all posts
+- /comments POST - Posts a comment
 
 
 ### Install Frontend
@@ -84,8 +91,11 @@ Frontend          |  http://localhost:9119                   | `user/password`
 H2 Database       |  http://localhost:9119/h2-console        |  Driver:`org.h2.Driver` <br/> JDBC URL:`jdbc:h2:mem:demo` <br/> User Name:`sa`
 
 
+### Test Suite
+- Backend test suite is being SpringRunner and TestRestTemplate
+- Few test conditions are breaking due to CSRF token injection. Need to find a work around or disable it for testing.
 
-##Features Status
+### Features Status
 a. Ability to register to the blogging portal and create a
 personal blogging space  - WIP
 b. Ability to publish multiple blog posts to the blogging space - Implemented
@@ -104,8 +114,9 @@ Note: One single user is available user:users and password:password now and once
 4.Personalize post search
 5.Log Out
 6.Gulpify the project for minification
+7.Front End test cases
 
-##References
+##### References
 https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/index.html - Web template
 http://blog.angular-university.io/developing-a-modern-java-8-web-app-with-spring-mvc-and-angularjs/
 https://github.com/jhades/spring-mvc-angularjs-sample-app

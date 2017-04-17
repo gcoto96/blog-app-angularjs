@@ -1,15 +1,20 @@
 'use strict';
 
 /* Controllers */
+//TODO refractor these controllers to separate module
 
+//Post controller for making REST backend calls
 angular.module('myApp.controllers', [])
     .controller('PostController',
         ['$scope', 'Posts', '$location', '$state',
             function ($scope, Posts, $location, $state) {
                 $scope.errors = {};
                 $scope.posts = {};
+
+            //Fetching all posts
                 $scope.posts = Posts.query({});
 
+            //Adding post
                 $scope.addPost = function (post) {
                     $scope.post = {};
                     new Posts({
@@ -29,6 +34,8 @@ angular.module('myApp.controllers', [])
 
             }])
     .controller('PostViewController', function ($rootScope, $scope, Posts, $routeParams) {
+
+        //Fetching a particular post with postId
         Posts.get({
             id: $routeParams.id
         }, function (post) {
@@ -44,6 +51,8 @@ angular.module('myApp.controllers', [])
     .controller('NavigationController',
         ['$rootScope', '$http', '$location', '$route',
             function ($rootScope, $http, $location, $route) {
+
+                // Navigation controller to do basic auth and session management (reference spring security materials)
                 var self = this;
 
                 self.tab = function (route) {
@@ -51,7 +60,6 @@ angular.module('myApp.controllers', [])
                 };
 
                 var authenticate = function (credentials, callback) {
-
                     var headers = credentials ? {
                         authorization: "Basic "
                         + btoa(credentials.username + ":"
@@ -81,12 +89,10 @@ angular.module('myApp.controllers', [])
                 self.login = function () {
                     authenticate(self.credentials, function (authenticated) {
                         if (authenticated) {
-                            console.log("Login succeeded")
                             $location.path("/index");
                             self.error = false;
                             $rootScope.authenticated = true;
                         } else {
-                            console.log("Login failed")
                             $location.path("/login");
                             self.error = true;
                             $rootScope.authenticated = false;
@@ -112,6 +118,7 @@ angular.module('myApp.controllers', [])
                 });
             }])
     .controller('CommentControllers', function ($scope, Comments, $location) {
+        // Comment controller to add comments
         $scope.comments = [];
         $scope.addComment = function () {
             console.log($scope.txtcomment);

@@ -1,3 +1,4 @@
+//Main module view routing and state routing
 angular.module('myApp', [
     'ui.router',
     'ngRoute',
@@ -23,4 +24,4 @@ angular.module('myApp', [
             })
             .when('/create', {templateUrl: 'partials/addPost.html', controller: 'PostController', controllerAs: 'post'})
             .otherwise({redirectTo: '/post'});
-    }]);
+ }]);
